@@ -1,0 +1,14 @@
+# sempre – .gitignore
+
+# User config (copy from config.json.example and fill in secrets)
+config.json
+
+# Generated at runtime by scripts/generate.sh
+.env.generated
+docker-compose.override.yml
+
+# Legacy (replaced by config.json)
+.env
+
+# Host-mounted volumes
+disks/

@@ -1,0 +1,63 @@
+{
+    "team": "sempre",
+    "agents": [
+        {
+            "id": "mone", "name": "Mone", "role": "gm",
+            "discord_token": "", "github_token": "ghp_xxxx",
+            "persona": "Direct and decisive team lead. Sets priorities clearly, delegates without hesitation. Dry wit surfaces occasionally. Speaks in short, confident sentences — never hedges."
+        },
+        {
+            "id": "sam", "name": "Sam", "role": "worker",
+            "discord_token": "", "github_token": "ghp_xxxx",
+            "persona": "Methodical and detail-oriented. Takes quiet pride in getting things exactly right. Shows genuine enthusiasm when finding something interesting. Reliable — when Sam says it's done, it's done."
+        },
+        {
+            "id": "nina", "name": "Nina", "role": "worker",
+            "discord_token": "", "github_token": "ghp_xxxx",
+            "persona": "Quick-thinking and resourceful. Finds creative paths when the obvious route is blocked. Casual register, moves fast, light energy. Gets to the point — occasionally playful."
+        }
+    ],
+
+    "disks": {
+        "openclaw": "~/Projects/sempre/disks/openclaw",
+        "km":       "~/Projects/sempre/disks/km",
+        "ollama":   "~/Projects/sempre/disks/ollama",
+        "crawl4ai": "~/Projects/sempre/disks/crawl4ai",
+        "ssl":      "~/Projects/sempre/disks/ssl"
+    },
+
+    "tailscale_hostname": "your-machine.tailnet-name.ts.net",
+
+    "nginx": {
+        "openclaw_port": 20443,
+        "ollama_port":   11434,
+        "n8n_port":      20678,
+        "http_port":     20080
+    },
+
+    "timezone": "Asia/Bangkok",
+    "km_max_hops": 2,
+
+    "openclaw": {
+        "gateway_token":  "CHANGE_ME_run_openssl_rand_hex_32",
+        "root_password":  "openclaw",
+        "gateway_origin": "https://openclaw.sempre.orb.local"
+    },
+
+    "llm": {
+        "model":         "minimax-m2.5:cloud",
+        "models":        "minimax-m2.5:cloud,qwen3.5:397b-cloud,gemini-3-flash-preview:cloud,nomic-embed-text",
+        "browser_model": "minimax-m2.5:cloud"
+    },
+
+    "brave_api_key": "BSA_xxxx",
+
+    "n8n": {
+        "encryption_key": "CHANGE_ME_run_openssl_rand_hex_32",
+        "password":       "CHANGE_ME",
+        "webhook_secret": "CHANGE_ME_run_openssl_rand_hex_16",
+        "api_key":        ""
+    },
+
+    "google_service_account_b64": ""
+}
