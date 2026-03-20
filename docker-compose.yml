@@ -70,6 +70,7 @@ services:
     volumes:
       - ${HOST_OPENCLAW_DIR:-~/.mone/openclaw}:/root/.openclaw
       - ${HOST_KM_DIR:-~/.mone/km}:/root/.km
+      - ${HOST_MCPORTER_DIR:-~/.mone/mcporter}:/root/.mcporter
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "2222:22"   # SSH only — web UI is served via nginx SSL

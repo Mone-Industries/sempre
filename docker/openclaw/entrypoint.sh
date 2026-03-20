@@ -384,6 +384,14 @@ fi
     echo "[entrypoint] Model pull complete."
 ) &
 
+# ---- Restore MCP tools via setup-mcporter.sh (if present) ----
+if [ -f "/root/.openclaw/tools/setup-mcporter.sh" ]; then
+    echo "[entrypoint] Running setup-mcporter.sh ..."
+    bash /root/.openclaw/tools/setup-mcporter.sh \
+        && echo "[entrypoint] ✓ MCP tools restored" \
+        || echo "[entrypoint] ⚠ setup-mcporter.sh failed (continuing)"
+fi
+
 # ---- Start OpenClaw gateway ----
 echo "[entrypoint] Starting OpenClaw gateway ..."
 cd /opt/openclaw

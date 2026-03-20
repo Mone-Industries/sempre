@@ -23,7 +23,8 @@
         "km":       "~/Projects/sempre/disks/km",
         "ollama":   "~/Projects/sempre/disks/ollama",
         "crawl4ai": "~/Projects/sempre/disks/crawl4ai",
-        "ssl":      "~/Projects/sempre/disks/ssl"
+        "ssl":      "~/Projects/sempre/disks/ssl",
+        "mcporter": "~/Projects/sempre/disks/mcporter"
     },
 
     "tailscale_hostname": "your-machine.tailnet-name.ts.net",
