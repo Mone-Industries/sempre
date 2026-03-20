@@ -114,4 +114,84 @@ Full workflow creation patterns → `skills/${TEAM_NAME}/SKILL.md`
 
 ---
 
+## Memory Tools — Search & Retrieve
+
+**These are native OpenClaw tools — NOT bash commands.**
+
+### memory_search — Semantic Search
+**Use when:** Need to find info but don't know exact location.
+
+```
+memory_search(query="seo keyword research thailand")
+memory_search(query="who is Boom Supanut")
+memory_search(query="competitor analysis tumwebsme")
+```
+
+Returns: snippets with path + line numbers, ranked by relevance.
+Searches: MEMORY.md · memory/*.md · /root/.km/Research/ · /root/.km/Tech/ · /root/.km/Projects/ · session transcripts
+
+### memory_get — Read Specific File
+**Use when:** You know the exact path from a memory_search result.
+
+```
+memory_get(path="/root/.km/Tech/openclaw-config-mastery.md")
+memory_get(path="/root/.km/Research/tumwebsme.md")
+```
+
+Returns: full file content. Degrades gracefully if file not found.
+
+### When to Use Which
+
+| Situation | Use |
+|-----------|-----|
+| Don't know if info exists | `memory_search` first |
+| Know the file path | `memory_get` directly |
+| Before re-researching | `memory_search` first |
+| After research done | Write to KM → verify with `memory_search` |
+
+> **KM is already indexed!** `/root/.km` is in memorySearch.extraPaths — no manual indexing needed.
+
+---
+
+## KM Vault — Research & Knowledge Storage
+
+**Trigger:** Research completed, learned technical facts, project milestones, need to store findings
+
+**Location:** `/root/.km/`
+
+### Write a research file
+```bash
+cat > /root/.km/Research/topic.md << 'EOF'
+---
+title: Topic
+tags: [research]
+created: $(date +%Y-%m-%d)
+agent: ${AGENT_NAME}
+---
+# Topic
+## Key Points
+- Finding 1
+- Finding 2
+## Sources
+- [Source Name](URL)
+EOF
+```
+
+### Write a tech knowledge file
+```bash
+cat > /root/.km/Tech/technology.md << 'EOF'
+---
+title: Technology Name
+tags: [tech]
+created: $(date +%Y-%m-%d)
+agent: ${AGENT_NAME}
+---
+# Technology Name
+## Overview
+...
+## Commands
+...
+EOF
+```
+
 Full patterns & examples → `skills/${TEAM_NAME}/SKILL.md`
