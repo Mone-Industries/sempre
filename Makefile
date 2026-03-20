@@ -200,7 +200,7 @@ down: _ensure-env
 
 restart: down up
 
-restart-openclaw: _ensure-env
+restart-openclaw: generate
 	@echo "🔄 Rebuilding and restarting openclaw only ..."
 	$(COMPOSE) up -d --build --no-deps openclaw
 	@echo "✅ OpenClaw restarted"

@@ -162,3 +162,13 @@ chmod 600 "$ENV_OUT"
 
 echo "✅ Generated: .env.generated (600) · docker-compose.override.yml"
 echo "   ${AGENT_COUNT} agents · $(( AGENT_COUNT * 3 )) per-agent services"
+
+# ==============================================================================
+# 3. Ensure host disk directories exist
+# ==============================================================================
+while IFS='=' read -r key val; do
+    [[ "$key" == HOST_*_DIR ]] || continue
+    dir="${val/\~/$HOME}"
+    mkdir -p "$dir"
+done < "$ENV_OUT"
+echo "📁 Disk directories ensured"
