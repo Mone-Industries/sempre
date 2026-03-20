@@ -32,10 +32,11 @@ Result: `{"ok": true, "result": "..."}`
 
 ---
 
-## GitHub Proxy — All GitHub operations
+## GitHub Proxy — All GitHub operations (REST + GraphQL)
 
-**Trigger:** repo, issue, PR, file, code search, release, commit — anything GitHub
+**Trigger:** repo, issue, PR, file, code search, release, commit, Projects board — anything GitHub
 
+### REST API
 ```bash
 GH=http://gh-proxy-${AGENT_ID}:8080
 
@@ -46,7 +47,23 @@ curl -s -X POST "$GH/repos/OWNER/REPO/issues" \
   -H "Content-Type: application/json" \
   -d '{"title": "...", "body": "..."}'
 ```
-No auth header needed — token is pre-injected.
+
+### GraphQL API — use for GitHub Projects v2, complex queries
+```bash
+GH=http://gh-proxy-${AGENT_ID}:8080
+
+# Example: list Projects v2 for an org
+curl -s -X POST "$GH/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ organization(login: \"ORG\") { projectsV2(first: 10) { nodes { id title } } } }"}'
+
+# Example: list items in a Project v2
+curl -s -X POST "$GH/graphql" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ node(id: \"PROJECT_ID\") { ... on ProjectV2 { items(first: 20) { nodes { id fieldValues(first: 8) { nodes { ... on ProjectV2ItemFieldTextValue { text field { ... on ProjectV2FieldCommon { name } } } } } } } } } }"}'
+```
+
+No auth header needed — token is pre-injected by the proxy.
 **FORBIDDEN alternative:** `web_fetch` to github.com, direct curl to `api.github.com`
 
 ---
